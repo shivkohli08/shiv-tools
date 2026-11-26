@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="SHIV TOOLS - Free online tools for students and everyday tasks.">
+<meta name="theme-color" content="#10213d">
+<title>SHIV TOOLS – Free Online Tools</title>
+<style>
+:root{--navy:#10213d;--blue:#2563eb;--bg:#f4f7fc;--ink:#17243b;--muted:#64748b;--line:#e2e8f0}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(120deg,#10213d,#1d4ed8);color:white;padding:22px 16px 28px}
+.wrap{max-width:1050px;margin:auto}.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-size:23px;font-weight:800;letter-spacing:.4px}.brand span{color:#93c5fd}
+.pill{font-size:12px;border:1px solid #ffffff55;border-radius:20px;padding:7px 10px}
+.hero{padding:28px 0 8px}.hero h1{font-size:clamp(27px,5vw,42px);margin:0 0 9px}.hero p{margin:0;color:#dbeafe;line-height:1.5}
+main{padding:22px 14px 45px}.search{width:100%;padding:14px 15px;border:1px solid var(--line);border-radius:13px;font-size:16px;background:white;outline:none;margin-bottom:17px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:14px}
+.card{background:white;border:1px solid var(--line);border-radius:17px;padding:17px;box-shadow:0 5px 18px #0f172a08}
+.card h2{font-size:18px;margin:0 0 7px}.desc{font-size:13px;color:var(--muted);margin:0 0 14px;line-height:1.45}
+label{display:block;font-size:13px;font-weight:700;margin:11px 0 6px}
+input,textarea,select{width:100%;padding:11px 12px;border:1px solid #cbd5e1;border-radius:10px;font-size:15px;background:#fff;color:var(--ink)}
+textarea{min-height:105px;resize:vertical}
+button{border:0;background:var(--blue);color:#fff;padding:11px 14px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;margin-top:10px}
+button.secondary{background:#eaf1ff;color:#1d4ed8}button:active{transform:scale(.98)}
+.row{display:flex;gap:8px;flex-wrap:wrap}.row>*{flex:1;min-width:95px}
+.result{background:#f1f5f9;border-radius:10px;padding:11px;margin-top:11px;font-size:14px;line-height:1.5;min-height:40px;overflow-wrap:anywhere}
+.mini{font-size:12px;color:var(--muted);margin-top:8px}.hidden{display:none!important}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:24px 12px}
+.adbox{border:1px dashed #94a3b8;border-radius:13px;text-align:center;padding:15px;color:#64748b;font-size:12px;margin:18px 0;background:#ffffff99}
+#toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#14213d;color:white;padding:10px 15px;border-radius:20px;font-size:13px;display:none}
+@media(max-width:480px){.top{align-items:flex-start}.brand{font-size:20px}.pill{font-size:11px}.card{padding:15px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="top"><div class="brand">SHIV <span>TOOLS</span></div><div class="pill">100% Free Tools</div></div>
+  <div class="hero"><h1>काम आसान बनाइए, बिल्कुल मुफ्त</h1><p>Students और रोज़मर्रा के कामों के लिए उपयोगी ऑनलाइन टूल्स। कोई अकाउंट बनाने की जरूरत नहीं।</p></div>
+</div></header>
+<main class="wrap">
+<input id="search" class="search" type="search" placeholder="टूल खोजें… जैसे percentage, word counter" aria-label="टूल खोजें">
+<div class="grid" id="tools">
+<section class="card" data-search="word counter words characters text शब्द गिनें">
+<h2>📝 Word & Character Counter</h2><p class="desc">शब्द, अक्षर, वाक्य और पैराग्राफ गिनें।</p>
+<textarea id="wcText" placeholder="यहाँ अपना टेक्स्ट लिखें या पेस्ट करें…"></textarea>
+<div class="result" id="wcResult">Words: 0 · Characters: 0 · Sentences: 0 · Paragraphs: 0</div>
+</section>
+
+<section class="card" data-search="case converter uppercase lowercase title sentence text">
+<h2>🔠 Text Case Converter</h2><p class="desc">टेक्स्ट को UPPERCASE, lowercase या Title Case में बदलें।</p>
+<textarea id="caseText" placeholder="अपना टेक्स्ट लिखें…"></textarea>
+<div class="row">
+<button onclick="convertCase('upper')">UPPERCASE</button><button class="secondary" onclick="convertCase('lower')">lowercase</button><button class="secondary" onclick="convertCase('title')">Title Case</button>
+</div><div class="result" id="caseResult">बदला हुआ टेक्स्ट यहाँ दिखेगा।</div>
+<button class="secondary" onclick="copyText('caseResult')">कॉपी करें</button>
+</section>
+
+<section class="card" data-search="remove extra spaces clean text">
+<h2>🧹 Extra Spaces Remover</h2><p class="desc">टेक्स्ट में अतिरिक्त spaces हटाएँ।</p>
+<textarea id="spaceText" placeholder="टेक्स्ट पेस्ट करें…"></textarea>
+<button onclick="cleanSpaces()">Spaces हटाएँ</button><div class="result" id="spaceResult">साफ टेक्स्ट यहाँ दिखेगा।</div>
+<button class="secondary" onclick="copyText('spaceResult')">कॉपी करें</button>
+</section>
+
+<section class="card" data-search="percentage calculator percent maths प्रतिशत">
+<h2>％ Percentage Calculator</h2><p class="desc">किसी संख्या का प्रतिशत निकालें।</p>
+<label>संख्या (Number)</label><input type="number" id="pNum" placeholder="जैसे 500">
+<label>प्रतिशत (%)</label><input type="number" id="pPercent" placeholder="जैसे 20">
+<button onclick="percentage()">Calculate</button><div class="result" id="pResult">उत्तर यहाँ दिखेगा।</div>
+</section>
+
+<section class="card" data-search="basic calculator जोड़ घटाव गुणा भाग">
+<h2>🧮 Basic Calculator</h2><p class="desc">जोड़, घटाव, गुणा और भाग करें।</p>
+<label>पहली संख्या</label><input type="number" id="n1" placeholder="पहली संख्या">
+<label>Operation</label><select id="op"><option value="+">जोड़ (+)</option><option value="-">घटाव (−)</option><option value="*">गुणा (×)</option><option value="/">भाग (÷)</option></select>
+<label>दूसरी संख्या</label><input type="number" id="n2" placeholder="दूसरी संख्या">
+<button onclick="calculate()">Calculate</button><div class="result" id="calcResult">उत्तर यहाँ दिखेगा।</div>
+</section>
+
+<section class="card" data-search="unit converter length weight temperature">
+<h2>📏 Unit Converter</h2><p class="desc">लंबाई, वजन और तापमान की इकाइयाँ बदलें।</p>
+<label>Category</label><select id="unitType" onchange="updateUnits()"><option value="length">Length</option><option value="weight">Weight</option><option value="temp">Temperature</option></select>
+<label>Value</label><input type="number" id="unitValue" value="1">
+<div class="row"><div><label>From</label><select id="unitFrom"></select></div><div><label>To</label><select id="unitTo"></select></div></div>
+<button onclick="convertUnit()">Convert</button><div class="result" id="unitResult">परिणाम यहाँ दिखेगा।</div>
+</section>
+
+<section class="card" data-search="typing speed test wpm practice टाइपिंग">
+<h2>⌨️ Typing Speed Test</h2><p class="desc">60 सेकंड में अपनी typing speed का अभ्यास करें।</p>
+<div class="result" id="typingSample">The quick brown fox jumps over the lazy dog. Practice typing every day to improve your speed and accuracy.</div>
+<textarea id="typingInput" placeholder="ऊपर दिया गया वाक्य यहाँ टाइप करें…" oninput="typingUpdate()"></textarea>
+<div class="row"><button id="typingStart" onclick="startTyping()">Start 60 sec</button><button class="secondary" onclick="resetTyping()">Reset</button></div>
+<div class="result" id="typingResult">समय: 60 सेकंड · WPM: 0</div>
+</section>
+
+<section class="card" data-search="age calculator date of birth उम्र">
+<h2>🎂 Age Calculator</h2><p class="desc">जन्मतिथि के आधार पर उम्र जानें।</p>
+<label>Date of Birth</label><input type="date" id="dob">
+<button onclick="ageCalc()">उम्र निकालें</button><div class="result" id="ageResult">आपकी उम्र यहाँ दिखेगी।</div>
+</section>
+</div>
+<div class="adbox">Advertisement space — बाद में मंजूरी मिलने पर यहाँ विज्ञापन लगाया जा सकता है।</div>
+</main>
+<footer>© <span id="year"></span> SHIV TOOLS · Made for learning and everyday use.<br>यह वेबसाइट मुफ्त टूल्स देती है; किसी भी परिणाम को जरूरी काम में उपयोग करने से पहले जाँच लें।</footer>
+<div id="toast"></div>
+<script>
+const $=id=>document.getElementById(id);
+$('year').textContent=new Date().getFullYear();
+function toast(msg){const t=$('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',1800)}
+$('wcText').addEventListener('input',()=>{const s=$('wcText').value;const words=s.trim()?s.trim().split(/\s+/).length:0;const sentences=s.trim()?(s.match(/[.!?।]+/g)||[]).length:0;const paragraphs=s.trim()?s.trim().split(/\n\s*\n/).length:0;$('wcResult').textContent=`Words: ${words} · Characters: ${s.length} · Sentences: ${sentences} · Paragraphs: ${paragraphs}`});
+function convertCase(type){let s=$('caseText').value;if(type==='upper')s=s.toUpperCase();if(type==='lower')s=s.toLowerCase();if(type==='title')s=s.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());$('caseResult').textContent=s||'कृपया पहले टेक्स्ट लिखें।'}
+function cleanSpaces(){const s=$('spaceText').value.replace(/[ \t]+/g,' ').replace(/\n{3,}/g,'\n\n').trim();$('spaceResult').textContent=s||'कृपया पहले टेक्स्ट लिखें।'}
+async function copyText(id){const s=$(id).textContent;if(!s||s.includes('यहाँ')||s.includes('कृपया'))return toast('कॉपी करने के लिए टेक्स्ट नहीं है');try{await navigator.clipboard.writeText(s);toast('कॉपी हो गया!')}catch(e){toast('टेक्स्ट को चुनकर कॉपी करें')}}
+function percentage(){const n=Number($('pNum').value),p=Number($('pPercent').value);if($('pNum').value===''||$('pPercent').value==='')return $('pResult').textContent='दोनों मान भरें।';$('pResult').textContent=`${n} का ${p}% = ${(n*p/100).toLocaleString('en-IN')}`}
+function calculate(){const a=Number($('n1').value),b=Number($('n2').value),op=$('op').value;if($('n1').value===''||$('n2').value==='')return $('calcResult').textContent='दोनों संख्याएँ भरें।';if(op==='/'&&b===0)return $('calcResult').textContent='शून्य से भाग नहीं कर सकते।';const r=op==='+'?a+b:op==='-'?a-b:op==='*'?a*b:a/b;$('calcResult').textContent='उत्तर: '+r}
+const units={length:{m:1,km:1000,cm:.01,mm:.001,ft:.3048,in:.0254},weight:{kg:1,g:.001,mg:.000001,lb:.453592,ton:1000},temp:{C:'C',F:'F',K:'K'}};
+function updateUnits(){const type=$('unitType').value,keys=Object.keys(units[type]);$('unitFrom').innerHTML='';$('unitTo').innerHTML='';keys.forEach(k=>{ $('unitFrom').add(new Option(k,k));$('unitTo').add(new Option(k,k))});$('unitTo').selectedIndex=type==='temp'?1:1}
+$('unitType').addEventListener('change',updateUnits);updateUnits();
+function convertUnit(){const type=$('unitType').value,v=Number($('unitValue').value),a=$('unitFrom').value,b=$('unitTo').value;if($('unitValue').value==='')return $('unitResult').textContent='मान भरें।';let r;if(type==='temp'){let c=a==='C'?v:a==='F'?(v-32)*5/9:v-273.15;r=b==='C'?c:b==='F'?c*9/5+32:c+273.15}else r=v*units[type][a]/units[type][b];$('unitResult').textContent=`${v} ${a} = ${Number(r.toFixed(6))} ${b}`}
+let timer=null,seconds=60,running=false;
+function startTyping(){if(running)return;running=true;seconds=60;$('typingInput').disabled=false;$('typingInput').focus();$('typingStart').disabled=true;timer=setInterval(()=>{seconds--;$('typingResult').textContent=`समय: ${seconds} सेकंड · ${typingWpm()} WPM`;if(seconds<=0){clearInterval(timer);running=false;$('typingInput').disabled=true;$('typingStart').disabled=false;$('typingResult').textContent=`समय पूरा! आपकी speed: ${typingWpm()} WPM`}},1000)}
+function typingWpm(){const words=$('typingInput').value.trim().split(/\s+/).filter(Boolean).length;return Math.round(words/Math.max((60-seconds)/60,1/60))}
+function typingUpdate(){if(running)$('typingResult').textContent=`समय: ${seconds} सेकंड · ${typingWpm()} WPM`}
+function resetTyping(){clearInterval(timer);seconds=60;running=false;$('typingInput').value='';$('typingInput').disabled=false;$('typingStart').disabled=false;$('typingResult').textContent='समय: 60 सेकंड · WPM: 0'}
+function ageCalc(){const val=$('dob').value;if(!val)return $('ageResult').textContent='जन्मतिथि चुनें।';const d=new Date(val+'T00:00:00'),now=new Date();if(d>now)return $('ageResult').textContent='जन्मतिथि भविष्य की नहीं हो सकती।';let y=now.getFullYear()-d.getFullYear(),m=now.getMonth()-d.getMonth(),day=now.getDate()-d.getDate();if(day<0){m--;day+=new Date(now.getFullYear(),now.getMonth(),0).getDate()}if(m<0){y--;m+=12}$('ageResult').textContent=`उम्र: ${y} वर्ष, ${m} महीने और ${day} दिन`}
+$('search').addEventListener('input',e=>{const q=e.target.value.toLowerCase();document.querySelectorAll('.card').forEach(c=>c.classList.toggle('hidden',!((c.dataset.search+' '+c.innerText).toLowerCase().includes(q))))});
+</script>
+</body>
+</html>
